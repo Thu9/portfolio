@@ -1,0 +1,5 @@
+.slide-out {
+  opacity: 0;
+  transform: translateY(50px); /* 원하는 만큼의 높이로 설정 */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
