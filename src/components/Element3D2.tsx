@@ -9,46 +9,41 @@ function MyBox(props) {
 }
 
 export default function Element3D2() {
-  const refMesh = useRef<any>();
-  const refWireMesh = useRef<any>();
+  const refMesh = useRef();
+  const refWireMesh = useRef();
 
-  const { xSize, ySize, zSize, xSegment, ySegment, zSegment } = useControls({
+  const { xSize, ySize, zSize, xSegments, ySegments, zSegments } = useControls({
     xSize: { value: 1, min: 0.1, max: 5, step: 0.01 },
     ySize: { value: 1, min: 0.1, max: 5, step: 0.01 },
     zSize: { value: 1, min: 0.1, max: 5, step: 0.01 },
-    xSegment: { value: 1, min: 1, max: 10, step: 1 },
-    ySegment: { value: 1, min: 1, max: 10, step: 1 },
-    zSegment: { value: 1, min: 1, max: 10, step: 1 },
+    xSegments: { value: 1, min: 1, max: 10, step: 1 },
+    ySegments: { value: 1, min: 1, max: 10, step: 1 },
+    zSegments: { value: 1, min: 1, max: 10, step: 1 },
   });
 
   useEffect(() => {
     refWireMesh.current.geometry = refMesh.current.geometry;
-  }, [xSize, ySize, zSize, xSegment, ySegment, zSegment]);
+  }, [xSize, ySize, zSize, xSegments, ySegments, zSegments]);
 
   return (
     <>
       <OrbitControls />
-
-      <ambientLight intensity={0.1} />
+      <ambientLight intensity={0.7} />
       <directionalLight position={[2, 1, 3]} intensity={0.5} />
+      {/* <MyBox position={[-1.2, 0, 0]}>
+        <meshStandardMaterial color="#e74c3c" />
+      </MyBox> */}
       <mesh ref={refMesh}>
         <boxGeometry
-          args={[xSize, ySize, zSize, xSegment, ySegment, zSegment]}
+          args={[xSize, ySize, zSize, xSegments, ySegments, zSegments]}
         />
         <meshStandardMaterial color="#1abc9c" />
       </mesh>
-
       <mesh ref={refWireMesh}>
         <meshStandardMaterial emissive="yellow" wireframe={true} />
       </mesh>
 
-      {/* <Box position={[1.2, 0, 0]}>
-        <meshStandardMaterial color="#8e44ad" />
-      </Box>
-
-      <MyBox position={[-1.2, 0, 0]}>
-        <meshStandardMaterial color="e74c3c" />
-      </MyBox> */}
+      <axesHelper scale={10} />
     </>
   );
 }
