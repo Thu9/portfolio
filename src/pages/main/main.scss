@@ -1,0 +1,28 @@
+.main-top-title {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  translate: 0 -50%;
+  font-size: 160px;
+  font-weight: 900;
+  color: #00adb5;
+  padding: 0 10px;
+}
+
+.main-top-title-border {
+  -webkit-text-stroke: 2px #00adb5;
+  color: transparent;
+}
+
+@media (max-width: 1320px) {
+  .main-top-title {
+    font-size: 10vw;
+  }
+}
+
+@media (max-width: 640px) {
+  .main-top-title {
+    font-size: 64px;
+    line-height: normal;
+  }
+}
